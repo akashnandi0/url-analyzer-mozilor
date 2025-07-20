@@ -1,0 +1,1 @@
+""" init file for url_analyzer app """
