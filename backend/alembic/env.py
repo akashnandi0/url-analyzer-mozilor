@@ -26,8 +26,8 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-from db.ur_analyzer.models import *
-from db.user_management.models import *
+from db.url_analyzer_module.models import *
+from db.user_management_module.models import *
 
 target_metadata = Base.metadata
 

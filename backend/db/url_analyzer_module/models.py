@@ -4,7 +4,7 @@ from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, JSON
 from sqlalchemy.orm import relationship
 from db.database import Base
-from db.user_management.models import User
+from db.user_management_module.models import User
 
 
 class URLAnalysis(Base):
