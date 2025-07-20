@@ -27,7 +27,7 @@ def hash_password(password: str) -> str:
         hash_pass = pwd_context.hash(password)
         return hash_pass
     except Exception as ex:
-        logging.error(f"Error Inside hash_password function: {str(ex)}")
+        logging.error(f"Error inside hash_password function: {str(ex)}")
         raise CustomException(f"Error hashing password: {str(ex)}") from ex
 
 
@@ -36,7 +36,7 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     try:
         return pwd_context.verify(plain_password, hashed_password)
     except Exception as ex:
-        logging.error(f"Error Inside verify_password function: {str(ex)}")
+        logging.error(f"Error inside verify_password function: {str(ex)}")
         raise CustomException(f"Error verifying password: {str(ex)}") from ex
 
 
@@ -48,7 +48,7 @@ def generate_jwt_token(payload: dict) -> str:
         )  # Set expiration time
         return jwt.encode(payload, settings.jwt_secret_key, algorithm=settings.jwt_algorithm)
     except Exception as ex:
-        logging.error(f"Error Inside generate_jwt_token function: {str(ex)}")
+        logging.error(f"Error inside generate_jwt_token function: {str(ex)}")
         raise CustomException(f"Error generating JWT token: {str(ex)}") from ex
 
 
@@ -60,7 +60,7 @@ async def call_get_method(endpoint: str):
             response.raise_for_status()
             return response
     except Exception as ex:
-        logging.error(f"Exception Inside call_get_method function : {str(ex)}")
+        logging.error(f"Exception inside call_get_method function : {str(ex)}")
         raise CustomException(f"Error During Api call: {str(ex)}") from ex
 
 
@@ -77,7 +77,7 @@ def get_text_content_from_html(html_content):
         return text
     except Exception as ex:
         logging.error(f"Error inside get_text_content_from_html function: {str(ex)}")
-        raise CustomException(f"Error During content Extraction : {str(ex)}") from ex
+        raise CustomException(f"Error during content extraction : {str(ex)}") from ex
 
 
 def get_word_frequencies(text: str):
@@ -89,4 +89,4 @@ def get_word_frequencies(text: str):
         return dict(word_freq.most_common(5))
     except Exception as ex:
         logging.error(f"Error inside get_word_frequencies function: {str(ex)}")
-        raise CustomException(f"Error During word frequency computation : {str(ex)}") from ex
+        raise CustomException(f"Error during word frequency computation : {str(ex)}") from ex
