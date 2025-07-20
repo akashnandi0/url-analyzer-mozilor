@@ -12,8 +12,6 @@ from .schemas import (
 )
 from utils.dependencies import verify_token
 
-
-# define the API router for url analysis
 router = APIRouter(
     tags=["Url Analyzer"],
     default_response_class=CustomORJSONResponse,
