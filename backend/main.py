@@ -1,4 +1,4 @@
-"""Entry point for the FastAPI application."""
+"""main file for the FastAPI application."""
 
 import logging
 import uvicorn

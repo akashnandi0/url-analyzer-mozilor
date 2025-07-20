@@ -1,4 +1,4 @@
-"""Used for manage configuration"""
+"""configuration settings for the application."""
 
 from functools import lru_cache
 from pydantic_settings import BaseSettings
