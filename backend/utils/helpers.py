@@ -1,6 +1,4 @@
-"""helpers.py
-Utility File for common helper functions.
-"""
+"""helpers file"""
 
 import logging
 import datetime
@@ -22,7 +20,7 @@ STOP_WORDS = set(ENGLISH_STOP_WORDS)
 
 
 def hash_password(password: str) -> str:
-    """Hash a password using bcrypt."""
+    """hash a password using bcrypt"""
     try:
         if not password:
             raise ValueError("Password cannot be empty.")
@@ -34,7 +32,7 @@ def hash_password(password: str) -> str:
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
-    """Verify a password against a hashed password."""
+    """verify the password against the hash"""
     try:
         return pwd_context.verify(plain_password, hashed_password)
     except Exception as ex:
@@ -43,7 +41,7 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 
 
 def generate_jwt_token(payload: dict) -> str:
-    """Generate a JWT token."""
+    """jwt token generation"""
     try:
         payload["exp"] = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(
             minutes=180
@@ -55,7 +53,7 @@ def generate_jwt_token(payload: dict) -> str:
 
 
 async def call_get_method(endpoint: str):
-    """function to call get method"""
+    """call get method"""
     try:
         async with httpx.AsyncClient(timeout=10) as client:
             response = await client.get(endpoint)
@@ -67,7 +65,7 @@ async def call_get_method(endpoint: str):
 
 
 def get_text_content_from_html(html_content):
-    """Function to get text content from html using beautiful soup"""
+    """get text content from html using beautiful soup"""
     try:
         soup = BeautifulSoup(html_content.text, "html.parser")
         for script in soup(["script", "style"]):
@@ -83,7 +81,7 @@ def get_text_content_from_html(html_content):
 
 
 def get_word_frequencies(text: str):
-    """Function to Find each word count"""
+    """find each word count"""
     try:
         words = re.findall(r"\b\w+\b", text.lower())
         words = [word for word in words if word not in STOP_WORDS and word.isalpha()]

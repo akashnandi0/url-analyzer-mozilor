@@ -1,4 +1,4 @@
-"""Response module"""
+"""response module"""
 
 from typing import Any
 import orjson

@@ -1,4 +1,4 @@
-"""Dependencies for API endpoints."""
+"""dependencies"""
 
 from fastapi import Request, status, HTTPException, Security
 from fastapi.security.api_key import APIKeyHeader
@@ -9,7 +9,7 @@ api_key = APIKeyHeader(name="Authorization")
 
 
 def verify_token(request: Request, token=Security(api_key)):
-    """Verify jwt token in the request"""
+    """verify jwt token"""
     try:
         token = token.split(" ")[-1]
         return jwt.decode(token, settings.jwt_secret_key, algorithms=settings.jwt_algorithm)

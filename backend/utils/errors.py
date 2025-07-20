@@ -1,7 +1,7 @@
-""" File to handle exceptions"""
+"""handle errors"""
 
 
 class CustomException(Exception):
-    """Custom exception class"""
+    """custom exception class"""
 
     pass
