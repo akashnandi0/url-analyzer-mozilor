@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+
+# Ignore Python virtual environments
+venv/
+
+#virtual environment
+.venv
+.env
+
+# config files
+.pre-commit-config.yaml
