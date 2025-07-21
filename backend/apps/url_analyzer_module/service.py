@@ -21,6 +21,14 @@ async def analyze_url(request_body):
                 dal_obj = URLAnalyzerDAL(session)
                 word_frequency = {}
                 url = str(request_body.get("url"))
+
+                # check if url already exists in the database
+                existing_entry = await dal_obj.get_url_analysis_entry(url, request_body.get("user_id"))
+                print(f"Existing Entry: {existing_entry}")
+                if existing_entry:
+                    logging.error("Duplicate URL entry detected.")
+                    raise Exception(f"Duplicate URL entry detected")
+                
                 # calling the provided endpoint
                 website_content = await call_get_method(url)
                 # getting text content from the website

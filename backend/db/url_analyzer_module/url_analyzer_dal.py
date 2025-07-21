@@ -13,6 +13,14 @@ class URLAnalyzerDAL:
         """Initialize the URLAnalyzerDAL with a database session."""
         self.db = db_session
 
+    async def get_url_analysis_entry(self, url: str, user_id: int):
+        """function to get url analysis entry by url and user_id"""
+        query = select(URLAnalysis).filter(
+            URLAnalysis.url == url, URLAnalysis.user_id == user_id
+        )
+        result = await self.db.execute(query)
+        return result.first()
+    
     async def create_url_analysis_entry(self, create_obj):
         """function to create url analysis object"""
 
