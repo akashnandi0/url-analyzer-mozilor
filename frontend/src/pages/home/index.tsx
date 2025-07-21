@@ -85,10 +85,10 @@ const Home: react.FC = () => {
           console.log(response.data.data.data);
           setTableData(response.data.data.data);
           if (response.data.data.total_count <= page * 10) {
-          setisDisabled(true);
-        } else {
-          setisDisabled(false);
-        }
+            setisDisabled(true);
+          } else {
+            setisDisabled(false);
+          }
         }
       } catch (error) {
         console.error("Error fetching table data:", error);
@@ -96,7 +96,7 @@ const Home: react.FC = () => {
     };
 
     fetchData();
-  }, []);
+  }, [page, user_id]);
   return (
     <Layout>
       <Container>
@@ -115,7 +115,7 @@ const Home: react.FC = () => {
           <Button
             type="submit"
             variant="contained"
-            sx={{ mt: 1 }}
+            sx={{ mt: 1, backgroundColor: "#5c9950" }}
             onClick={handleSubmit}
             disabled={disableAnalysis}
           >
@@ -126,29 +126,68 @@ const Home: react.FC = () => {
           <Typography variant="h6" gutterBottom>
             Analyzed URLs
           </Typography>
-          <Table>
+          <Table
+            style={{
+              border: "3px solid #d4d6d9",
+              borderCollapse: "collapse",
+              width: "100%",
+            }}
+          >
             <TableHead>
               <TableRow>
-                <TableCell>URL</TableCell>
-                <TableCell>Word Frequencies</TableCell>
-                <TableCell>Created At</TableCell>
-                <TableCell>Action</TableCell>
+                <TableCell
+                  style={{ border: "2px solid #d4d6d9", fontWeight: "bold" }}
+                >
+                  URL
+                </TableCell>
+                <TableCell
+                  style={{ border: "2px solid #d4d6d9", fontWeight: "bold" }}
+                >
+                  Word Frequencies
+                </TableCell>
+                <TableCell
+                  style={{ border: "2px solid #d4d6d9", fontWeight: "bold" }}
+                >
+                  Created At
+                </TableCell>
+                <TableCell
+                  style={{ border: "2px solid #d4d6d9", fontWeight: "bold" }}
+                >
+                  Action
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {tableData.map((row, index) => (
-                <TableRow key={index}>
-                  <TableCell>{row.url}</TableCell>
-                  <TableCell>
+                <TableRow
+                  key={index}
+                  sx={{
+                    "&:hover": {
+                      backgroundColor: "#f5f5f5", // light gray on hover
+                      transition: "background-color 0.2s",
+                    },
+                  }}
+                >
+                  <TableCell style={{ border: "2px solid #d4d6d9" }}>
+                    {row.url}
+                  </TableCell>
+                  <TableCell style={{ border: "2px solid #d4d6d9" }}>
                     {Object.entries(row.word_frequencies)
                       .map(([word, freq]) => `${word}: ${freq}`)
                       .join(", ")}
                   </TableCell>
-                  <TableCell>
+                  <TableCell style={{ border: "2px solid #d4d6d9" }}>
                     {new Date(row.created_at).toLocaleString()}
                   </TableCell>
-                  <TableCell>
-                    <Button onClick={() => navigate(`/summary/${row.id}`)}>
+                  <TableCell style={{ border: "2px solid #d4d6d9" }}>
+                    <Button
+                      style={{
+                        color: "white",
+                        fontWeight: "800",
+                        backgroundColor: "#5c9950",
+                      }}
+                      onClick={() => navigate(`/summary/${row.id}`)}
+                    >
                       View
                     </Button>
                   </TableCell>
