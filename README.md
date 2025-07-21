@@ -1,4 +1,4 @@
-# website-word-analyzer
+# url-analyzer
 
 This application analyzes websites to find the most frequently used words.
 
